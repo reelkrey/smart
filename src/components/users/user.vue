@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import type { User } from '@/interfaces/user'
+import { useUserStore } from '@/stores/user'
 
 interface Props {
   users: User[]
 }
-
 defineProps<Props>()
+
+const { deleteUser: deleteUserHandler } = useUserStore()
+
+function deleteUser(userId: number) {
+  deleteUserHandler(userId)
+}
 </script>
 
 <template>
@@ -15,5 +21,6 @@ defineProps<Props>()
     <span>
       <img :src="user.avatar" :alt="user.first_name" />
     </span>
+    <button @click="deleteUser(user.id)">delete</button>
   </li>
 </template>

@@ -1,7 +1,7 @@
-import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
 import type { Fetch } from '@/interfaces/fetch'
 import type { User } from '@/interfaces/user'
+import { defineStore } from 'pinia'
+import { computed, ref } from 'vue'
 import axios from 'axios'
 
 export const useUserStore = defineStore('users', () => {
@@ -31,10 +31,19 @@ export const useUserStore = defineStore('users', () => {
     }
   }
 
+  async function deleteUser(userId: number) {
+    try {
+      await axios.delete(`https://reqres.in/api/users/${userId}`)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return {
     users,
     getUsers,
     isLoading,
-    addUser
+    addUser,
+    deleteUser
   }
 })

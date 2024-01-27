@@ -5,7 +5,6 @@ import user from '@/components/users/user.vue'
 interface Props {
   users: User[]
 }
-
 defineProps<Props>()
 </script>
 
