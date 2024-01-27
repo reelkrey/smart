@@ -55,10 +55,13 @@ dd {
 body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
+  background: #f2f2f2;
+  padding: 40px 20px;
 }
 
 /* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
 ul[class],
+li[class],
 ol[class] {
   list-style: none;
 }
