@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { useUsersStore } from '@/stores/users'
 import { onMounted } from 'vue'
+import users from '@/components/users/users.vue'
 
-const { users, getUsers, isLoading } = useUsersStore()
+const { users: usersData, getUsers, isLoading } = useUsersStore()
 
 onMounted(async () => {
   await getUsers()
@@ -11,13 +12,9 @@ onMounted(async () => {
 
 <template>
   <main>
-    <div v-if="isLoading">hello</div>
+    <div v-if="isLoading">loading...</div>
     <div v-else>
-      <ul>
-        <li v-for="user in users" :key="user.id">
-          <span>{{ user.first_name }}</span>
-        </li>
-      </ul>
+      <users :users="usersData" />
     </div>
   </main>
 </template>
