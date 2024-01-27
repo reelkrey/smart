@@ -17,7 +17,7 @@ function deleteUser(userId: number) {
 </script>
 
 <template>
-  <li v-for="user in users" :key="user.id" @click="setIsActive">
+  <li v-for="user in users" :key="user.id" @click="setIsActive(user)">
     <span>{{ user.first_name }}</span>
     <span>{{ user.email }}</span>
     <span>
