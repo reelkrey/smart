@@ -4,6 +4,7 @@ import { onMounted } from 'vue'
 import type { User } from '@/interfaces/user'
 import users from '@/components/users/users.vue'
 import addForm from '@/components/form/add-form.vue'
+import userDetails from '@/components/modal/user-details.vue'
 
 const { users: usersData, getUsers, isLoading, addUser: addUserHandler } = useUserStore()
 
@@ -18,6 +19,7 @@ onMounted(async () => {
 
 <template>
   <main>
+    <user-details />
     <div v-if="isLoading">loading...</div>
     <div v-else>
       <add-form @add-user="addUser" />
