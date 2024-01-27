@@ -4,7 +4,7 @@ import type { Fetch } from '@/interfaces/fetch'
 import type { User } from '@/interfaces/user'
 import axios from 'axios'
 
-export const useUsersStore = defineStore('users', () => {
+export const useUserStore = defineStore('users', () => {
   const usersArray = ref<User[] | []>([])
   const loading = ref(true)
   const users = computed(() => usersArray)
@@ -20,9 +20,21 @@ export const useUsersStore = defineStore('users', () => {
     }
   }
 
+  async function addUser(user: User) {
+    try {
+      await axios.post('https://reqres.in/api/users', {
+        name: user.first_name,
+        job: 'web developer'
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return {
     users,
     getUsers,
-    isLoading
+    isLoading,
+    addUser
   }
 })
