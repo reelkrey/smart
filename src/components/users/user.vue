@@ -37,9 +37,10 @@ function deleteUser(userId: number) {
 .user__item {
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
+  padding: 5px 10px;
   border-radius: 1000px;
   border: 1px solid #b6b6b6;
-  padding: 5px 10px;
 }
 
 .user__avatar {
