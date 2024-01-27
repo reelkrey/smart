@@ -12,7 +12,7 @@ function addUser(user: User): void {
 }
 
 onMounted(async () => {
-  await getUsers()
+  if (!users.length) await getUsers()
 })
 </script>
 
