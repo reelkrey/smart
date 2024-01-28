@@ -4,10 +4,10 @@ import { useDetailsModalStore } from '@/stores/detailsModal'
 import { useCreateModalStore } from '@/stores/createModal'
 import { computed, onMounted } from 'vue'
 import type { IUser } from '@/common/types/user'
-import Users from '@/components/users/Users.vue'
-import AddForm from '@/components/form/AddForm.vue'
+import Users from '@/components/user/Users.vue'
+import UserCreate from '@/components/user/UserCreate.vue'
 import Modal from '@/components/ui/Modal.vue'
-import UserDetails from '@/components/modal/UserDetails.vue'
+import UserDetails from '@/components/user/UserDetails.vue'
 
 const userStore = useUserStore()
 const detailsModalStore = useDetailsModalStore()
@@ -38,7 +38,7 @@ onMounted(async () => {
       </Modal>
 
       <Modal :modalActive="createModalActive" :modalType="'create'">
-        <AddForm @add-user="addUser" />
+        <UserCreate @add-user="addUser" />
       </Modal>
     </div>
   </main>
