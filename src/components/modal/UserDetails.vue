@@ -29,6 +29,56 @@ const { isActive, setIsActive, userInfo } = useModalStore()
 </template>
 
 <style lang="scss" scoped>
+.user {
+  &__details {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__details-wrapper {
+    position: relative;
+    display: flex;
+    gap: 40px;
+    padding: 80px 110px;
+    border-radius: 20px;
+    background-color: #fefefe;
+    box-shadow: 3px 4px 20.2px 0px #e8e8e8;
+  }
+
+  &__details-header {
+    margin-bottom: 20px;
+    color: #b6b6b6;
+    white-space: nowrap;
+    font-size: 24px;
+  }
+
+  &__details-avatar {
+    width: 130px;
+    height: 130px;
+  }
+
+  &__details-info {
+    margin-bottom: 10px;
+    display: block;
+
+    &.name {
+      font-weight: 600;
+    }
+  }
+
+  &__details-button {
+    position: absolute;
+    right: 5%;
+    top: 10%;
+
+    &:hover {
+      transform: scale(1.5);
+    }
+  }
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -40,52 +90,5 @@ const { isActive, setIsActive, userInfo } = useModalStore()
   justify-content: center;
   align-items: center;
   z-index: 999;
-}
-.user__details {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.user__details-wrapper {
-  position: relative;
-  display: flex;
-  gap: 40px;
-  padding: 80px 110px;
-  border-radius: 20px;
-  background-color: #fefefe;
-  box-shadow: 3px 4px 20.2px 0px #e8e8e8;
-}
-
-.user__details-header {
-  margin-bottom: 20px;
-  color: #b6b6b6;
-  white-space: nowrap;
-  font-size: 24px;
-}
-
-.user__details-avatar {
-  width: 130px;
-  height: 130px;
-}
-
-.user__details-info {
-  margin-bottom: 10px;
-  display: block;
-
-  &.name {
-    font-weight: 600;
-  }
-}
-
-.user__details-button {
-  position: absolute;
-  right: 5%;
-  top: 10%;
-
-  &:hover {
-    transform: scale(1.5);
-  }
 }
 </style>
