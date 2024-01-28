@@ -15,7 +15,9 @@ function addUser(user: IUser): void {
 }
 
 onMounted(async () => {
-  await store.getUsers()
+  if (!store.users.length) {
+    await store.getUsers()
+  }
 })
 </script>
 
