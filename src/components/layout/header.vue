@@ -19,7 +19,6 @@ const searchParams = ref('')
       @input="searchUser(searchParams)"
     />
     <button class="header__button" @click="setIsActive">Добавить пользователя +</button>
-    {{ searchParams }}
   </header>
 </template>
 
