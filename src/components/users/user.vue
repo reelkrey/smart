@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { User } from '@/interfaces/user'
+import type { IUser } from '@/interfaces/user'
 import { useUserStore } from '@/stores/user'
 import { useModalStore } from '@/stores/modal'
 
 interface Props {
-  users: User[]
+  users: IUser[]
 }
 defineProps<Props>()
 

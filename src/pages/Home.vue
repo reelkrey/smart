@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/user'
 import { onMounted } from 'vue'
-import type { User } from '@/interfaces/user'
+import type { IUser } from '@/interfaces/user'
 import Users from '@/components/Users/Users.vue'
 import AddForm from '@/components/form/AddForm.vue'
 import UserDetails from '@/components/modal/UserDetails.vue'
 
 const { users: usersData, getUsers, isLoading, addUser: addUserHandler } = useUserStore()
 
-function addUser(user: User): void {
+function addUser(user: IUser): void {
   addUserHandler(user)
 }
 
 onMounted(async () => {
-  if (!users.length) await getUsers()
+  await getUsers()
 })
 </script>
 
