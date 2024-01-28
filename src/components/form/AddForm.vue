@@ -1,17 +1,20 @@
 <script setup lang="ts">
-import type { IUserForm } from '@/common/types/userForm'
+import type { IUser } from '@/common/types/user'
 import { useFormStore } from '@/stores/form'
 import { computed, ref } from 'vue'
 
 const store = useFormStore()
 const active = computed(() => store.active)
 const uncorrect = ref(false)
-const user: IUserForm = {
+const user: IUser = {
   first_name: '',
-  email: ''
+  email: '',
+  avatar: '',
+  id: Date.now(),
+  last_name: ''
 }
 const emit = defineEmits<{
-  (e: 'addUser', user: IUserForm): void
+  (e: 'addUser', user: IUser): void
 }>()
 
 function addUser() {

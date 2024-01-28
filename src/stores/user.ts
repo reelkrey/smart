@@ -1,6 +1,5 @@
 import type { IFetch } from '@/common/types/fetch'
 import type { IUser } from '@/common/types/user'
-import type { IUserForm } from '@/common/types/userForm'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import api from '@/services/api'
@@ -19,13 +18,13 @@ export const useUserStore = defineStore('users', () => {
     }
   }
 
-  async function addUser(user: IUserForm) {
+  async function addUser(user: IUser) {
     try {
       await api.post('/users', {
         name: user.first_name,
         job: 'web developer'
       })
-      // users.value = [...users.value, user]
+      users.value = [...users.value, user]
     } catch (error) {
       console.log(error)
     }
