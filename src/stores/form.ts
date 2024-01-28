@@ -1,16 +1,16 @@
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useFormStore = defineStore('form', () => {
   const active = ref(false)
-  const isActive = computed(() => active)
 
   function setIsActive() {
     active.value = !active.value
+    console.log()
   }
 
   return {
-    isActive,
+    active,
     setIsActive
   }
 })

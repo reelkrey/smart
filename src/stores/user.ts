@@ -1,28 +1,26 @@
-import type { Fetch } from '@/interfaces/fetch'
-import type { User } from '@/interfaces/user'
+import type { IFetch } from '@/common/types/fetch'
+import type { IUser } from '@/common/types/user'
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
-import axios from 'axios'
+import { ref } from 'vue'
+import api from '@/services/api'
 
 export const useUserStore = defineStore('users', () => {
-  const usersArray = ref<User[] | []>([])
+  const users = ref<IUser[] | []>([])
   const loading = ref(true)
-  const users = computed(() => usersArray)
-  const isLoading = computed(() => loading)
 
   async function getUsers() {
     try {
-      const response = await axios.get<Fetch>('https://reqres.in/api/users')
-      usersArray.value = response.data.data
+      const response = await api.get<IFetch>('/users')
+      users.value = response.data.data
       loading.value = false
     } catch (error) {
       console.log(error)
     }
   }
 
-  async function addUser(user: User) {
+  async function addUser(user: IUser) {
     try {
-      await axios.post('https://reqres.in/api/users', {
+      await api.post('/users', {
         name: user.first_name,
         job: 'web developer'
       })
@@ -33,22 +31,20 @@ export const useUserStore = defineStore('users', () => {
 
   async function deleteUser(userId: number) {
     try {
-      await axios.delete(`https://reqres.in/api/users/${userId}`)
+      await api.delete(`/users/${userId}`)
     } catch (error) {
       console.log(error)
     }
   }
 
   function searchUser(searchParams: string) {
-    usersArray.value = usersArray.value.filter(
-      (user) => user.first_name.indexOf(searchParams) !== -1
-    )
+    users.value = users.value.filter((user) => user.first_name.indexOf(searchParams) !== -1)
   }
 
   return {
     users,
+    loading,
     getUsers,
-    isLoading,
     addUser,
     deleteUser,
     searchUser

@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { User } from '@/interfaces/user'
-import user from '@/components/users/user.vue'
+import type { IUser } from '@/common/types/user'
+import User from '@/components/users/User.vue'
 
-interface Props {
-  users: User[]
+type Props = {
+  users: IUser[]
 }
 defineProps<Props>()
 </script>
 
 <template>
   <ul>
-    <user :users="users" />
+    <User :users="users" />
   </ul>
 </template>

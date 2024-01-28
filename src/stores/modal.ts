@@ -1,21 +1,19 @@
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import type { User } from '@/interfaces/user'
+import type { IUser } from '@/common/types/user'
 
 export const useModalStore = defineStore('modal', () => {
   const active = ref(false)
-  const user = ref<User | null>(null)
-  const isActive = computed(() => active)
-  const userInfo = computed(() => user)
+  const user = ref<IUser | null>(null)
 
-  function setIsActive(userInfo: User) {
+  function setIsActive(userInfo: IUser) {
     active.value = !active.value
     user.value = userInfo
   }
 
   return {
-    isActive,
     setIsActive,
-    userInfo
+    active,
+    user
   }
 })

@@ -101,6 +101,11 @@ button {
   width: auto;
   overflow: visible;
   cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    scale: 1.05;
+  }
 
   background: transparent;
 

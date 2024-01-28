@@ -30,23 +30,37 @@ const searchParams = ref('')
   align-items: center;
   gap: 90px;
   margin-bottom: 40px;
-}
 
-.header__logo {
-  font-size: 42px;
-}
+  @media (max-width: 840px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 
-.header__input {
-  padding: 15px 25px;
-  border-radius: 30px;
-  border: 1px solid #b6b6b6;
-}
+  &__logo {
+    font-size: 42px;
+  }
 
-.header__button {
-  white-space: nowrap;
-  color: #fff;
-  border-radius: 30px;
-  background: #303030;
-  padding: 12px 25px;
+  &__input {
+    padding: 15px 25px;
+    border-radius: 30px;
+    border: 1px solid #b6b6b6;
+    min-width: 300px;
+
+    &::placeholder {
+      color: #a8a8a8;
+    }
+  }
+
+  &__button {
+    white-space: nowrap;
+    color: #fff;
+    border-radius: 30px;
+    background: #303030;
+    padding: 12px 25px;
+
+    @media (max-width: 840px) {
+      align-self: flex-end;
+    }
+  }
 }
 </style>

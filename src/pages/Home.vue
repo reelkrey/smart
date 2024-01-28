@@ -1,29 +1,33 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/user'
-import { onMounted } from 'vue'
-import type { User } from '@/interfaces/user'
-import users from '@/components/users/users.vue'
-import addForm from '@/components/form/add-form.vue'
-import userDetails from '@/components/modal/user-details.vue'
+import { computed, onMounted } from 'vue'
+import type { IUser } from '@/common/types/user'
+import Users from '@/components/users/Users.vue'
+import AddForm from '@/components/form/AddForm.vue'
+import UserDetails from '@/components/modal/UserDetails.vue'
 
-const { users: usersData, getUsers, isLoading, addUser: addUserHandler } = useUserStore()
+const store = useUserStore()
+const users = computed(() => store.users)
+const loading = computed(() => store.loading)
 
-function addUser(user: User): void {
-  addUserHandler(user)
+function addUser(user: IUser): void {
+  store.addUser(user)
 }
 
 onMounted(async () => {
-  if (!users.length) await getUsers()
+  if (!store.users.length) {
+    await store.getUsers()
+  }
 })
 </script>
 
 <template>
   <main>
-    <user-details />
-    <div v-if="isLoading">loading...</div>
+    <UserDetails />
+    <div v-if="loading">loading...</div>
     <div v-else>
-      <add-form @add-user="addUser" />
-      <users :users="usersData" />
+      <AddForm @add-user="addUser" />
+      <Users :users="users" />
     </div>
   </main>
 </template>
