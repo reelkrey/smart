@@ -17,6 +17,7 @@ const emit = defineEmits<{
 function addUser() {
   if (user.first_name.length >= 3 && user.email.includes('@')) {
     emit('addUser', user)
+    store.setIsActive()
     uncorrect.value = false
   } else {
     uncorrect.value = true

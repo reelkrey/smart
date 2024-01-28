@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/user'
 import { computed, onMounted } from 'vue'
-import type { IUser } from '@/common/types/user'
+import type { IUserForm } from '@/common/types/userForm'
 import Users from '@/components/users/Users.vue'
 import AddForm from '@/components/form/AddForm.vue'
 import UserDetails from '@/components/modal/UserDetails.vue'
@@ -10,7 +10,7 @@ const store = useUserStore()
 const users = computed(() => store.users)
 const loading = computed(() => store.loading)
 
-function addUser(user: IUser): void {
+function addUser(user: IUserForm): void {
   store.addUser(user)
 }
 
