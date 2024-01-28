@@ -2,9 +2,9 @@
 import { useUserStore } from '@/stores/user'
 import { onMounted } from 'vue'
 import type { User } from '@/interfaces/user'
-import users from '@/components/users/users.vue'
-import addForm from '@/components/form/add-form.vue'
-import userDetails from '@/components/modal/user-details.vue'
+import Users from '@/components/Users/Users.vue'
+import AddForm from '@/components/form/AddForm.vue'
+import UserDetails from '@/components/modal/UserDetails.vue'
 
 const { users: usersData, getUsers, isLoading, addUser: addUserHandler } = useUserStore()
 
@@ -19,11 +19,11 @@ onMounted(async () => {
 
 <template>
   <main>
-    <user-details />
+    <UserDetails />
     <div v-if="isLoading">loading...</div>
     <div v-else>
-      <add-form @add-user="addUser" />
-      <users :users="usersData" />
+      <AddForm @add-user="addUser" />
+      <Users :users="usersData" />
     </div>
   </main>
 </template>
