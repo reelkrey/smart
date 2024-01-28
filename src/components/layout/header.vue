@@ -1,20 +1,14 @@
 <script setup lang="ts">
-import { useUserStore } from '@/stores/user'
 import { useModalStore } from '@/stores/modal'
+import Search from '../ui/Search.vue'
 
-const userStore = useUserStore()
 const modalStore = useModalStore()
 </script>
 
 <template>
   <header class="header">
     <span class="header__logo">smart</span>
-    <input
-      class="header__input"
-      type="text"
-      placeholder="Поиск по имени"
-      v-model="userStore.searchParams"
-    />
+    <Search />
     <button class="header__button" @click="modalStore.openCreateModal">
       Добавить пользователя +
     </button>
@@ -36,17 +30,6 @@ const modalStore = useModalStore()
 
   &__logo {
     font-size: 42px;
-  }
-
-  &__input {
-    padding: 15px 25px;
-    border-radius: 30px;
-    border: 1px solid #b6b6b6;
-    min-width: 300px;
-
-    &::placeholder {
-      color: #a8a8a8;
-    }
   }
 
   &__button {
