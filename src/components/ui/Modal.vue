@@ -1,20 +1,37 @@
 <script setup lang="ts">
-import { useModalStore } from '@/stores/modal'
+import { useDetailsModalStore } from '@/stores/detailsModal'
+import { useCreateModalStore } from '@/stores/createModal'
 
-const modalStore = useModalStore()
+type Props = {
+  modalActive: boolean
+  modalType: string
+}
+defineProps<Props>()
+
+const detailsModalStore = useDetailsModalStore()
+const createModalStore = useCreateModalStore()
 </script>
 
 <template>
-  <div class="overlay">
+  <div class="overlay" v-if="modalActive">
     <div class="modal">
       <div class="modal__wrapper">
-        <div class="modal__details">
-          <slot name="details"></slot>
-        </div>
-        <div class="modal__create">
-          <slot name="create"></slot>
-        </div>
-        <button class="modal__button" @click="modalStore.setIsActive">✖</button>
+        <slot></slot>
+
+        <button
+          v-if="modalType === 'details'"
+          class="modal__button"
+          @click="detailsModalStore.closeModal"
+        >
+          ✖
+        </button>
+        <button
+          v-if="modalType === 'create'"
+          class="modal__button"
+          @click="createModalStore.closeModal"
+        >
+          ✖
+        </button>
       </div>
     </div>
   </div>

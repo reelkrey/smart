@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useFormStore } from '@/stores/form'
 import { useUserStore } from '@/stores/user'
+import { useCreateModalStore } from '@/stores/createModal'
 
-const { setIsActive } = useFormStore()
-const store = useUserStore()
+const userStore = useUserStore()
+const createModalStore = useCreateModalStore()
 </script>
 
 <template>
@@ -13,9 +13,11 @@ const store = useUserStore()
       class="header__input"
       type="text"
       placeholder="Поиск по имени"
-      v-model="store.searchParams"
+      v-model="userStore.searchParams"
     />
-    <button class="header__button" @click="setIsActive">Добавить пользователя +</button>
+    <button class="header__button" @click="createModalStore.openModal">
+      Добавить пользователя +
+    </button>
   </header>
 </template>
 

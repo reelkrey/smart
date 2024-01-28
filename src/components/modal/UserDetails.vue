@@ -1,27 +1,23 @@
 <script setup lang="ts">
-import { useModalStore } from '@/stores/modal'
+import { useDetailsModalStore } from '@/stores/detailsModal'
 import { computed } from 'vue'
 
-const store = useModalStore()
-const active = computed(() => store.active)
-const user = computed(() => store.user)
+const detailsModalStore = useDetailsModalStore()
+const user = computed(() => detailsModalStore.user)
 </script>
 
 <template>
-  <div class="user__details" v-if="false">
+  <div class="user__details">
     <div class="user__details-wrapper">
       <div class="user__details-inner">
         <div class="user__details-avatar">
-          <img :src="user?.avatar" alt="User image" />
+          <img class="user__details-avatar__image" :src="user?.avatar" alt="User image" />
         </div>
       </div>
       <div class="user__details-inner">
         <h3 class="user__details-header">Персональная информация</h3>
         <span class="user__details-info name">{{ `${user?.first_name} ${user?.last_name}` }}</span>
         <span class="user__details-info">{{ user?.email }} </span>
-      </div>
-      <div class="user__details-inner" v-if="user">
-        <button class="user__details-button" @click="store.setIsActive(user)">✖</button>
       </div>
     </div>
   </div>
@@ -44,6 +40,10 @@ const user = computed(() => store.user)
   &__details-avatar {
     width: 130px;
     height: 130px;
+  }
+
+  &__details-avatar__image {
+    border-radius: 50%;
   }
 
   &__details-info {

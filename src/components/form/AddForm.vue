@@ -74,32 +74,6 @@ function addUser() {
 
 <style lang="scss" scoped>
 .form {
-  &__wrapper {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -300%);
-    max-width: 700px;
-    padding: 40px;
-    border-radius: 10px;
-    background-color: #fff;
-    transition: all 0.5s;
-
-    @media (max-width: 750px) {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    &.active {
-      transform: translate(-50%, -50%);
-    }
-  }
-
   &__image {
     min-width: 150px;
 
