@@ -1,12 +1,16 @@
 import type { IFetch } from '@/common/types/fetch'
 import type { IUser } from '@/common/types/user'
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import api from '@/services/api'
 
 export const useUserStore = defineStore('users', () => {
   const users = ref<IUser[] | []>([])
   const loading = ref(true)
+  const searchParams = ref('')
+  const filtredUsers = computed(() => {
+    return users.value.filter((user) => user.first_name.toLowerCase().includes(searchParams.value))
+  })
 
   async function getUsers() {
     try {
@@ -44,6 +48,8 @@ export const useUserStore = defineStore('users', () => {
     loading,
     getUsers,
     addUser,
-    deleteUser
+    deleteUser,
+    searchParams,
+    filtredUsers
   }
 })

@@ -7,7 +7,6 @@ import AddForm from '@/components/form/AddForm.vue'
 import UserDetails from '@/components/modal/UserDetails.vue'
 
 const store = useUserStore()
-const users = computed(() => store.users)
 const loading = computed(() => store.loading)
 
 function addUser(user: IUser): void {
@@ -27,7 +26,7 @@ onMounted(async () => {
     <div v-if="loading">loading...</div>
     <div v-else>
       <AddForm @add-user="addUser" />
-      <Users :users="users" />
+      <Users :users="store.filtredUsers" />
     </div>
   </main>
 </template>

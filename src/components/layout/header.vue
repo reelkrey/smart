@@ -1,13 +1,20 @@
 <script setup lang="ts">
 import { useFormStore } from '@/stores/form'
+import { useUserStore } from '@/stores/user'
 
 const { setIsActive } = useFormStore()
+const store = useUserStore()
 </script>
 
 <template>
   <header class="header">
     <span class="header__logo">smart</span>
-    <input class="header__input" type="text" placeholder="Поиск по имени" />
+    <input
+      class="header__input"
+      type="text"
+      placeholder="Поиск по имени"
+      v-model="store.searchParams"
+    />
     <button class="header__button" @click="setIsActive">Добавить пользователя +</button>
   </header>
 </template>
