@@ -10,7 +10,7 @@ const { isActive, setIsActive, userInfo } = useModalStore()
       <div class="user__details-wrapper">
         <div class="user__details-inner">
           <div class="user__details-avatar">
-            <img src="../../../public/images/user-photo.svg" alt="User image" />
+            <img :src="userInfo?.avatar" alt="User image" />
           </div>
         </div>
         <div class="user__details-inner">
@@ -35,11 +35,11 @@ const { isActive, setIsActive, userInfo } = useModalStore()
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный цвет */
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999; /* Положите его выше, чем ваш модальный контент */
+  z-index: 999;
 }
 .user__details {
   position: absolute;
