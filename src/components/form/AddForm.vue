@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { User } from '@/interfaces/user'
+import type { IUserForm } from '@/interfaces/userForm'
 import { useFormStore } from '@/stores/form'
 
 const { isActive } = useFormStore()
-const user: User = {
+const user: IUserForm = {
   first_name: '',
   email: ''
 }
 
 const emit = defineEmits<{
-  (e: 'addUser', user: User): void
+  (e: 'addUser', user: IUserForm): void
 }>()
 </script>
 

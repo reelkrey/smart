@@ -3,7 +3,7 @@ import type { IUser } from '@/interfaces/user'
 import { useUserStore } from '@/stores/user'
 import { useModalStore } from '@/stores/modal'
 
-interface Props {
+type Props = {
   users: IUser[]
 }
 defineProps<Props>()

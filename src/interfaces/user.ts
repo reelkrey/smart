@@ -1,7 +1,7 @@
-export interface IUser {
+import type { IUserForm } from '@/interfaces/userForm'
+
+export interface IUser extends IUserForm {
   id: number
-  email: string
-  first_name: string
   last_name: string
   avatar: string
 }

@@ -2,7 +2,7 @@
 import type { IUser } from '@/interfaces/user'
 import User from '@/components/users/User.vue'
 
-interface Props {
+type Props = {
   users: IUser[]
 }
 defineProps<Props>()
