@@ -67,6 +67,7 @@ const emit = defineEmits<{
     justify-content: center;
     align-items: center;
     gap: 50px;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -300%);
     max-width: 700px;
@@ -77,7 +78,7 @@ const emit = defineEmits<{
     transition: all 0.5s;
 
     &.active {
-      transform: translate(-50%, 0%);
+      transform: translate(-50%, -50%);
     }
   }
 
