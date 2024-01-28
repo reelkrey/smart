@@ -59,55 +59,57 @@ const emit = defineEmits<{
 </template>
 
 <style lang="scss" scoped>
-.form__wrapper {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 50px;
-  left: 50%;
-  transform: translate(-50%, -300%);
-  max-width: 700px;
-  padding: 20px;
-  border-radius: 10px;
-  width: 100%;
-  background-color: #fff;
-  transition: all 0.5s;
+.form {
+  &__wrapper {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    left: 50%;
+    transform: translate(-50%, -300%);
+    max-width: 700px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    background-color: #fff;
+    transition: all 0.5s;
 
-  &.active {
-    transform: translate(-50%, 0%);
+    &.active {
+      transform: translate(-50%, 0%);
+    }
   }
-}
 
-.form__header {
-  margin-bottom: 60px;
-}
+  &__header {
+    margin-bottom: 60px;
+  }
 
-.form__subtitle {
-  margin-bottom: 20px;
-}
+  &__subtitle {
+    margin-bottom: 20px;
+  }
 
-.form__label-inner {
-  display: flex;
-  flex-direction: column;
-}
+  &__label-inner {
+    display: flex;
+    flex-direction: column;
+  }
 
-.form__label {
-  margin-bottom: 5px;
-}
+  &__label {
+    margin-bottom: 5px;
+  }
 
-.form__input {
-  border-radius: 200px;
-  border: 1px solid #b6b6b6;
-  padding: 5px 10px;
-  margin-bottom: 20px;
-}
+  &__input {
+    border-radius: 200px;
+    border: 1px solid #b6b6b6;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+  }
 
-.form__button {
-  white-space: nowrap;
-  color: #fff;
-  border-radius: 30px;
-  background: #303030;
-  padding: 12px 25px;
+  &__button {
+    white-space: nowrap;
+    color: #fff;
+    border-radius: 30px;
+    background: #303030;
+    padding: 12px 25px;
+  }
 }
 </style>
