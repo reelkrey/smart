@@ -10,6 +10,6 @@ defineProps<Props>()
 
 <template>
   <ul>
-    <user :users="users" />
+    <User :users="users" />
   </ul>
 </template>
