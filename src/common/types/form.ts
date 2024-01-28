@@ -1,4 +1,4 @@
-export interface Form {
+export interface IForm {
   name: string
   email: string
 }

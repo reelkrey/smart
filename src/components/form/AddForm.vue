@@ -2,19 +2,18 @@
 import type { IUserForm } from '@/common/types/userForm'
 import { useFormStore } from '@/stores/form'
 
-const { isActive } = useFormStore()
+const { active } = useFormStore()
 const user: IUserForm = {
   first_name: '',
   email: ''
 }
-
 const emit = defineEmits<{
   (e: 'addUser', user: IUserForm): void
 }>()
 </script>
 
 <template>
-  <div class="form__wrapper" :class="{ active: isActive }">
+  <div class="form__wrapper" :class="{ active: active }">
     <div class="form__inner">
       <img src="../../../public/images/user-photo.svg" alt="User image" />
     </div>

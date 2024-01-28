@@ -1,4 +1,4 @@
-import type { Fetch } from '@/common/types/fetch'
+import type { IFetch } from '@/common/types/fetch'
 import type { IUser } from '@/common/types/user'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
@@ -10,7 +10,7 @@ export const useUserStore = defineStore('users', () => {
 
   async function getUsers() {
     try {
-      const response = await api.get<Fetch>('/users')
+      const response = await api.get<IFetch>('/users')
       users.value = response.data.data
       loading.value = false
     } catch (error) {
