@@ -9,7 +9,7 @@ type Props = {
 defineProps<Props>()
 
 const { deleteUser: deleteUserHandler } = useUserStore()
-const { setIsActive } = useModalStore()
+const modalStore = useModalStore()
 
 function deleteUser(userId: number) {
   deleteUserHandler(userId)
@@ -24,7 +24,9 @@ function deleteUser(userId: number) {
       </span>
     </div>
     <div class="user__item-inner details">
-      <span class="user__name" @click="setIsActive(user)">{{ user.first_name }}</span>
+      <span class="user__name" @click="modalStore.openDetailsModal(user)">{{
+        user.first_name
+      }}</span>
       <span class="user__email">{{ user.email }}</span>
     </div>
     <div class="user__item-inner button">

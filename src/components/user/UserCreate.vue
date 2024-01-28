@@ -1,23 +1,26 @@
 <script setup lang="ts">
-import type { IUserForm } from '@/common/types/userForm'
-import { useFormStore } from '@/stores/form'
-import { computed, ref } from 'vue'
+import type { IUser } from '@/common/types/user'
+import { useModalStore } from '@/stores/modal'
+import { ref } from 'vue'
 
-const store = useFormStore()
-const active = computed(() => store.active)
+const modalStore = useModalStore()
+
 const uncorrect = ref(false)
-const user: IUserForm = {
+const user: IUser = {
   first_name: '',
-  email: ''
+  email: '',
+  avatar: '',
+  id: Date.now(),
+  last_name: ''
 }
 const emit = defineEmits<{
-  (e: 'addUser', user: IUserForm): void
+  (e: 'addUser', user: IUser): void
 }>()
 
 function addUser() {
   if (user.first_name.length >= 3 && user.email.includes('@')) {
     emit('addUser', user)
-    store.setIsActive()
+    modalStore.closeCreateModal()
     uncorrect.value = false
   } else {
     uncorrect.value = true
@@ -26,7 +29,7 @@ function addUser() {
 </script>
 
 <template>
-  <div class="form__wrapper" :class="{ active: active }">
+  <div class="form__wrapper">
     <div class="form__inner">
       <div class="form__image">
         <img src="../../../public/images/user-photo.svg" alt="User image" />
@@ -63,7 +66,9 @@ function addUser() {
             <span class="form__uncorrect" v-if="uncorrect">Email должен содержать символ "@"</span>
           </div>
         </div>
-        <button class="form__button" type="submit">Подтвердить</button>
+        <div class="form__button-inner">
+          <button class="form__button" type="submit">Подтвердить</button>
+        </div>
       </form>
     </div>
   </div>
@@ -71,34 +76,13 @@ function addUser() {
 
 <style lang="scss" scoped>
 .form {
-  &__wrapper {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -300%);
-    max-width: 700px;
-    padding: 40px;
-    border-radius: 10px;
-    background-color: #fff;
-    transition: all 0.5s;
-
-    @media (max-width: 750px) {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    &.active {
-      transform: translate(-50%, -50%);
-    }
-  }
-
   &__image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     min-width: 150px;
+    margin-bottom: 20px;
 
     @media (max-width: 395px) {
       min-width: auto;
@@ -106,12 +90,11 @@ function addUser() {
   }
 
   &__header {
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     white-space: nowrap;
 
     @media (max-width: 395px) {
       font-size: 20px;
-      margin-bottom: 30px;
     }
   }
 
@@ -144,9 +127,16 @@ function addUser() {
     padding: 5px 10px;
   }
 
+  &__button-inner {
+    width: 100%;
+  }
+
   &__button {
+    display: block;
     white-space: nowrap;
     color: #fff;
+    width: 150px;
+    margin-left: auto;
     border-radius: 30px;
     background: #303030;
     padding: 12px 25px;

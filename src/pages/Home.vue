@@ -1,33 +1,43 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/user'
+import { useModalStore } from '@/stores/modal'
 import { computed, onMounted } from 'vue'
-import type { IUserForm } from '@/common/types/userForm'
-import Users from '@/components/users/Users.vue'
-import AddForm from '@/components/form/AddForm.vue'
-import UserDetails from '@/components/modal/UserDetails.vue'
+import type { IUser } from '@/common/types/user'
+import Users from '@/components/user/Users.vue'
+import UserCreate from '@/components/user/UserCreate.vue'
+import Modal from '@/components/ui/Modal.vue'
+import UserDetails from '@/components/user/UserDetails.vue'
 
-const store = useUserStore()
-const users = computed(() => store.users)
-const loading = computed(() => store.loading)
+const userStore = useUserStore()
+const modalStore = useModalStore()
+const loading = computed(() => userStore.loading)
+const detailsModalActive = computed(() => modalStore.detailsModalActive)
+const createModalActive = computed(() => modalStore.createModalActive)
 
-function addUser(user: IUserForm): void {
-  store.addUser(user)
+function addUser(user: IUser): void {
+  userStore.addUser(user)
 }
 
 onMounted(async () => {
-  if (!store.users.length) {
-    await store.getUsers()
+  if (!userStore.users.length) {
+    await userStore.getUsers()
   }
 })
 </script>
 
 <template>
   <main>
-    <UserDetails />
     <div v-if="loading">loading...</div>
     <div v-else>
-      <AddForm @add-user="addUser" />
-      <Users :users="users" />
+      <Users :users="userStore.filtredUsers" />
+
+      <Modal :modalActive="detailsModalActive" :modalType="'details'">
+        <UserDetails></UserDetails>
+      </Modal>
+
+      <Modal :modalActive="createModalActive" :modalType="'create'">
+        <UserCreate @add-user="addUser" />
+      </Modal>
     </div>
   </main>
 </template>
