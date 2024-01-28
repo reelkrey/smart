@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { User } from '@/interfaces/user'
-import user from '@/components/users/user.vue'
+import User from '@/components/users/User.vue'
 
 interface Props {
   users: User[]
