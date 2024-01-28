@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import type { IUserForm } from '@/common/types/userForm'
 import { useFormStore } from '@/stores/form'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 const store = useFormStore()
 const active = computed(() => store.active)
+const uncorrect = ref(false)
 const user: IUserForm = {
   first_name: '',
   email: ''
@@ -12,6 +13,15 @@ const user: IUserForm = {
 const emit = defineEmits<{
   (e: 'addUser', user: IUserForm): void
 }>()
+
+function addUser() {
+  if (user.first_name.length >= 3 && user.email.includes('@')) {
+    emit('addUser', user)
+    uncorrect.value = false
+  } else {
+    uncorrect.value = true
+  }
+}
 </script>
 
 <template>
@@ -22,7 +32,7 @@ const emit = defineEmits<{
     <div class="form__inner">
       <h2 class="form__header">Добавление пользователя</h2>
       <h3 class="form__subtitle">Персональная информация</h3>
-      <form class="form" @submit.prevent="emit('addUser', user)">
+      <form class="form" @submit.prevent="addUser">
         <div class="form__label-inner">
           <label class="form__label" for="name">Введите имя</label>
           <input
@@ -32,6 +42,7 @@ const emit = defineEmits<{
             v-model="user.first_name"
             id="name"
           />
+          <span class="form__uncorrect" v-if="uncorrect">Минимальная длина 3 символа</span>
         </div>
         <div class="form__label-inner">
           <label class="form__label" for="email">Введите электронную почту</label>
@@ -42,6 +53,7 @@ const emit = defineEmits<{
             v-model="user.email"
             id="email"
           />
+          <span class="form__uncorrect" v-if="uncorrect">Email должен содержать символ "@"</span>
         </div>
         <button class="form__button" type="submit">Подтвердить</button>
       </form>
@@ -83,6 +95,7 @@ const emit = defineEmits<{
   &__label-inner {
     display: flex;
     flex-direction: column;
+    margin-bottom: 20px;
   }
 
   &__label {
@@ -93,7 +106,6 @@ const emit = defineEmits<{
     border-radius: 200px;
     border: 1px solid #b6b6b6;
     padding: 5px 10px;
-    margin-bottom: 20px;
   }
 
   &__button {
@@ -102,6 +114,10 @@ const emit = defineEmits<{
     border-radius: 30px;
     background: #303030;
     padding: 12px 25px;
+  }
+
+  &__uncorrect {
+    color: #ff0000;
   }
 }
 </style>
