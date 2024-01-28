@@ -2,7 +2,7 @@ import type { Fetch } from '@/interfaces/fetch'
 import type { User } from '@/interfaces/user'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import axios from 'axios'
+import api from '@/services/api'
 
 export const useUserStore = defineStore('users', () => {
   const usersArray = ref<User[] | []>([])
@@ -12,7 +12,7 @@ export const useUserStore = defineStore('users', () => {
 
   async function getUsers() {
     try {
-      const response = await axios.get<Fetch>('https://reqres.in/api/users')
+      const response = await api.get<Fetch>('/users')
       usersArray.value = response.data.data
       loading.value = false
     } catch (error) {
@@ -22,7 +22,7 @@ export const useUserStore = defineStore('users', () => {
 
   async function addUser(user: User) {
     try {
-      await axios.post('https://reqres.in/api/users', {
+      await api.post('/users', {
         name: user.first_name,
         job: 'web developer'
       })
@@ -33,7 +33,7 @@ export const useUserStore = defineStore('users', () => {
 
   async function deleteUser(userId: number) {
     try {
-      await axios.delete(`https://reqres.in/api/users/${userId}`)
+      await api.delete(`/users/${userId}`)
     } catch (error) {
       console.log(error)
     }
