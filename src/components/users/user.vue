@@ -41,6 +41,11 @@ function deleteUser(userId: number) {
   padding: 5px 10px;
   border-radius: 1000px;
   border: 1px solid #b6b6b6;
+  transition: all 0.3s;
+
+  &:hover {
+    transform: scale(1.01);
+  }
 }
 
 .user__avatar {
@@ -72,6 +77,18 @@ function deleteUser(userId: number) {
 }
 
 .user__name {
+  max-width: max-content;
   cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.user__button {
+  &:hover {
+    transform: scale(1.5);
+  }
 }
 </style>

@@ -83,5 +83,9 @@ const { isActive, setIsActive, userInfo } = useModalStore()
   position: absolute;
   right: 5%;
   top: 10%;
+
+  &:hover {
+    transform: scale(1.5);
+  }
 }
 </style>
