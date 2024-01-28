@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useDetailsModalStore } from '@/stores/detailsModal'
 import { useCreateModalStore } from '@/stores/createModal'
+import { onClickOutside } from '@vueuse/core'
+import { ref } from 'vue'
 
 type Props = {
   modalActive: boolean
@@ -10,11 +12,15 @@ defineProps<Props>()
 
 const detailsModalStore = useDetailsModalStore()
 const createModalStore = useCreateModalStore()
+const target = ref(null)
+
+onClickOutside(target, createModalStore.closeModal)
+onClickOutside(target, detailsModalStore.closeModal)
 </script>
 
 <template>
   <div class="overlay" v-if="modalActive">
-    <div class="modal">
+    <div class="modal" ref="target">
       <div class="modal__wrapper">
         <slot></slot>
 
