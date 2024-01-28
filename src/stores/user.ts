@@ -1,5 +1,5 @@
-import type { Fetch } from '@/interfaces/fetch'
-import type { IUser } from '@/interfaces/user'
+import type { Fetch } from '@/common/types/fetch'
+import type { IUser } from '@/common/types/user'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import api from '@/services/api'

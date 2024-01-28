@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IUser } from '@/interfaces/user'
+import type { IUser } from '@/common/types/user'
 import { useUserStore } from '@/stores/user'
 import { useModalStore } from '@/stores/modal'
 

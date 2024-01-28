@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IUserForm } from '@/interfaces/userForm'
+import type { IUserForm } from '@/common/types/userForm'
 import { useFormStore } from '@/stores/form'
 
 const { isActive } = useFormStore()

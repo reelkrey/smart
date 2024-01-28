@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/user'
 import { computed, onMounted } from 'vue'
-import type { IUser } from '@/interfaces/user'
+import type { IUser } from '@/common/types/user'
 import Users from '@/components/users/Users.vue'
 import AddForm from '@/components/form/AddForm.vue'
 import UserDetails from '@/components/modal/UserDetails.vue'
