@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { IUser } from '@/common/types/user'
-import { useFormStore } from '@/stores/form'
-import { computed, ref } from 'vue'
+import { useCreateModalStore } from '@/stores/createModal'
+import { ref } from 'vue'
 
-const store = useFormStore()
-const active = computed(() => store.active)
+const createModalStore = useCreateModalStore()
+
 const uncorrect = ref(false)
 const user: IUser = {
   first_name: '',
@@ -20,7 +20,7 @@ const emit = defineEmits<{
 function addUser() {
   if (user.first_name.length >= 3 && user.email.includes('@')) {
     emit('addUser', user)
-    store.setIsActive()
+    createModalStore.closeModal()
     uncorrect.value = false
   } else {
     uncorrect.value = true
@@ -29,7 +29,7 @@ function addUser() {
 </script>
 
 <template>
-  <div class="form__wrapper" :class="{ active: active }">
+  <div class="form__wrapper">
     <div class="form__inner">
       <div class="form__image">
         <img src="../../../public/images/user-photo.svg" alt="User image" />
@@ -66,7 +66,9 @@ function addUser() {
             <span class="form__uncorrect" v-if="uncorrect">Email должен содержать символ "@"</span>
           </div>
         </div>
-        <button class="form__button" type="submit">Подтвердить</button>
+        <div class="form__button-inner">
+          <button class="form__button" type="submit">Подтвердить</button>
+        </div>
       </form>
     </div>
   </div>
@@ -75,7 +77,12 @@ function addUser() {
 <style lang="scss" scoped>
 .form {
   &__image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     min-width: 150px;
+    margin-bottom: 20px;
 
     @media (max-width: 395px) {
       min-width: auto;
@@ -83,12 +90,11 @@ function addUser() {
   }
 
   &__header {
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     white-space: nowrap;
 
     @media (max-width: 395px) {
       font-size: 20px;
-      margin-bottom: 30px;
     }
   }
 
@@ -121,9 +127,16 @@ function addUser() {
     padding: 5px 10px;
   }
 
+  &__button-inner {
+    width: 100%;
+  }
+
   &__button {
+    display: block;
     white-space: nowrap;
     color: #fff;
+    width: 150px;
+    margin-left: auto;
     border-radius: 30px;
     background: #303030;
     padding: 12px 25px;
