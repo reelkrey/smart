@@ -28,7 +28,9 @@ function addUser() {
 <template>
   <div class="form__wrapper" :class="{ active: active }">
     <div class="form__inner">
-      <img src="../../../public/images/user-photo.svg" alt="User image" />
+      <div class="form__image">
+        <img src="../../../public/images/user-photo.svg" alt="User image" />
+      </div>
     </div>
     <div class="form__inner">
       <h2 class="form__header">Добавление пользователя</h2>
@@ -79,23 +81,47 @@ function addUser() {
     left: 50%;
     transform: translate(-50%, -300%);
     max-width: 700px;
-    padding: 20px;
+    padding: 40px;
     border-radius: 10px;
-    width: 100%;
     background-color: #fff;
     transition: all 0.5s;
+
+    @media (max-width: 750px) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
     &.active {
       transform: translate(-50%, -50%);
     }
   }
 
+  &__image {
+    min-width: 150px;
+
+    @media (max-width: 395px) {
+      min-width: auto;
+    }
+  }
+
   &__header {
     margin-bottom: 60px;
+    white-space: nowrap;
+
+    @media (max-width: 395px) {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
   }
 
   &__subtitle {
     margin-bottom: 20px;
+    white-space: nowrap;
+
+    @media (max-width: 395px) {
+      font-size: 15px;
+    }
   }
 
   &__label-inner {
