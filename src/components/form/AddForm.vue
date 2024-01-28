@@ -43,16 +43,6 @@ const emit = defineEmits<{
             id="email"
           />
         </div>
-        <div class="form__label-inner">
-          <label class="form__label" for="email">Введите номер телефона</label>
-          <input
-            class="form__input"
-            type="text"
-            placeholder="Email"
-            v-model="user.email"
-            id="email"
-          />
-        </div>
         <button class="form__button" type="submit">Подтвердить</button>
       </form>
     </div>
