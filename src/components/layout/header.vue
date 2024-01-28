@@ -1,14 +1,25 @@
 <script setup lang="ts">
 import { useFormStore } from '@/stores/form'
+import { useUserStore } from '@/stores/user'
+import { ref } from 'vue'
 
 const { setIsActive } = useFormStore()
+const { searchUser } = useUserStore()
+const searchParams = ref('')
 </script>
 
 <template>
   <header class="header">
     <span class="header__logo">smart</span>
-    <input class="header__input" type="text" placeholder="Поиск по имени" />
+    <input
+      class="header__input"
+      type="text"
+      placeholder="Поиск по имени"
+      v-model="searchParams"
+      @input="searchUser(searchParams)"
+    />
     <button class="header__button" @click="setIsActive">Добавить пользователя +</button>
+    {{ searchParams }}
   </header>
 </template>
 
