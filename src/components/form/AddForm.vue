@@ -35,27 +35,30 @@ function addUser() {
       <form class="form" @submit.prevent="addUser">
         <div class="form__label-inner">
           <label class="form__label" for="name">Введите имя</label>
-          <input
-            class="form__input"
-            :class="{ 'form__input-uncorrect': uncorrect }"
-            type="text"
-            placeholder="Имя"
-            v-model="user.first_name"
-            id="name"
-          />
-          <span class="form__uncorrect" v-if="uncorrect">Минимальная длина 3 символа</span>
+          <div :class="{ 'form__uncorrect-animation': uncorrect }">
+            <input
+              class="form__input"
+              type="text"
+              placeholder="Имя"
+              v-model="user.first_name"
+              id="name"
+            />
+            <span class="form__uncorrect" v-if="uncorrect">Минимальная длина 3 символа</span>
+          </div>
         </div>
         <div class="form__label-inner">
           <label class="form__label" for="email">Введите электронную почту</label>
-          <input
-            class="form__input"
-            :class="{ 'form__input-uncorrect': uncorrect }"
-            type="text"
-            placeholder="Email"
-            v-model="user.email"
-            id="email"
-          />
-          <span class="form__uncorrect" v-if="uncorrect">Email должен содержать символ "@"</span>
+          <div :class="{ 'form__uncorrect-animation': uncorrect }">
+            <input
+              class="form__input"
+              :class="{ 'form__input-uncorrect': uncorrect }"
+              type="text"
+              placeholder="Email"
+              v-model="user.email"
+              id="email"
+            />
+            <span class="form__uncorrect" v-if="uncorrect">Email должен содержать символ "@"</span>
+          </div>
         </div>
         <button class="form__button" type="submit">Подтвердить</button>
       </form>
@@ -95,7 +98,6 @@ function addUser() {
   }
 
   &__label-inner {
-    position: relative;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
@@ -123,15 +125,18 @@ function addUser() {
     padding: 12px 25px;
   }
 
-  &__uncorrect {
-    position: absolute;
-    top: 55px;
-    font-size: 12px;
-    color: #ff0000;
+  &__uncorrect-animation {
+    position: relative;
+    max-width: 250px;
+    animation: horizontal-shaking 0.3s 1.5;
   }
 
-  &__input-uncorrect {
-    animation: horizontal-shaking 0.3s 1.5;
+  &__uncorrect {
+    position: absolute;
+    left: 0;
+    top: 31px;
+    font-size: 12px;
+    color: #ff0000;
   }
 }
 
