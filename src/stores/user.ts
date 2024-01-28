@@ -1,11 +1,11 @@
 import type { Fetch } from '@/interfaces/fetch'
-import type { User } from '@/interfaces/user'
+import type { IUser } from '@/interfaces/user'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import api from '@/services/api'
 
 export const useUserStore = defineStore('users', () => {
-  const users = ref<User[] | []>([])
+  const users = ref<IUser[] | []>([])
   const loading = ref(true)
 
   async function getUsers() {
@@ -18,7 +18,7 @@ export const useUserStore = defineStore('users', () => {
     }
   }
 
-  async function addUser(user: User) {
+  async function addUser(user: IUser) {
     try {
       await api.post('/users', {
         name: user.first_name,
