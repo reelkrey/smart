@@ -40,6 +40,10 @@ const searchParams = ref('')
   padding: 15px 25px;
   border-radius: 30px;
   border: 1px solid #b6b6b6;
+
+  &::placeholder {
+    color: #a8a8a8;
+  }
 }
 
 .header__button {

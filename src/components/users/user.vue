@@ -17,14 +17,14 @@ function deleteUser(userId: number) {
 </script>
 
 <template>
-  <li class="user__item" v-for="user in users" :key="user.id" @click="setIsActive(user)">
+  <li class="user__item" v-for="user in users" :key="user.id">
     <div class="user__item-inner">
       <span class="user__avatar">
         <img class="user__avatar-image" :src="user.avatar" :alt="user.first_name" />
       </span>
     </div>
     <div class="user__item-inner details">
-      <span class="user__name">{{ user.first_name }}</span>
+      <span class="user__name" @click="setIsActive(user)">{{ user.first_name }}</span>
       <span class="user__email">{{ user.email }}</span>
     </div>
     <div class="user__item-inner button">
@@ -69,5 +69,9 @@ function deleteUser(userId: number) {
     display: flex;
     flex-direction: column;
   }
+}
+
+.user__name {
+  cursor: pointer;
 }
 </style>
