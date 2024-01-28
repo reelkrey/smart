@@ -39,16 +39,11 @@ export const useUserStore = defineStore('users', () => {
     }
   }
 
-  function searchUser(searchParams: string) {
-    users.value = users.value.filter((user) => user.first_name.indexOf(searchParams) !== -1)
-  }
-
   return {
     users,
     loading,
     getUsers,
     addUser,
-    deleteUser,
-    searchUser
+    deleteUser
   }
 })
