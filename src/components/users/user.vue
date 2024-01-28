@@ -58,6 +58,10 @@ function deleteUser(userId: number) {
   &-image {
     border-radius: 50%;
   }
+
+  @media (max-width: 500px) {
+    margin-right: 10px;
+  }
 }
 
 .user__email {
