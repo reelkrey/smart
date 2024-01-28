@@ -3,17 +3,34 @@ import { defineStore } from 'pinia'
 import type { IUser } from '@/common/types/user'
 
 export const useModalStore = defineStore('modal', () => {
-  const active = ref(false)
   const user = ref<IUser | null>(null)
+  const detailsModalActive = ref(false)
+  const createModalActive = ref(false)
 
-  function setIsActive(userInfo: IUser) {
-    active.value = !active.value
+  function openDetailsModal(userInfo: IUser) {
+    detailsModalActive.value = true
     user.value = userInfo
   }
 
+  function openCreateModal() {
+    createModalActive.value = true
+  }
+
+  function closeDetailsModal() {
+    detailsModalActive.value = false
+  }
+
+  function closeCreateModal() {
+    createModalActive.value = false
+  }
+
   return {
-    setIsActive,
-    active,
-    user
+    user,
+    detailsModalActive,
+    createModalActive,
+    openDetailsModal,
+    openCreateModal,
+    closeDetailsModal,
+    closeCreateModal
   }
 })

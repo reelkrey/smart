@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/user'
-import { useDetailsModalStore } from '@/stores/detailsModal'
-import { useCreateModalStore } from '@/stores/createModal'
+import { useModalStore } from '@/stores/modal'
 import { computed, onMounted } from 'vue'
 import type { IUser } from '@/common/types/user'
 import Users from '@/components/user/Users.vue'
@@ -10,11 +9,10 @@ import Modal from '@/components/ui/Modal.vue'
 import UserDetails from '@/components/user/UserDetails.vue'
 
 const userStore = useUserStore()
-const detailsModalStore = useDetailsModalStore()
-const createModalStore = useCreateModalStore()
+const modalStore = useModalStore()
 const loading = computed(() => userStore.loading)
-const detailsModalActive = computed(() => detailsModalStore.active)
-const createModalActive = computed(() => createModalStore.active)
+const detailsModalActive = computed(() => modalStore.detailsModalActive)
+const createModalActive = computed(() => modalStore.createModalActive)
 
 function addUser(user: IUser): void {
   userStore.addUser(user)

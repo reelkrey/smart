@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/user'
-import { useCreateModalStore } from '@/stores/createModal'
+import { useModalStore } from '@/stores/modal'
 
 const userStore = useUserStore()
-const createModalStore = useCreateModalStore()
+const modalStore = useModalStore()
 </script>
 
 <template>
@@ -15,7 +15,7 @@ const createModalStore = useCreateModalStore()
       placeholder="Поиск по имени"
       v-model="userStore.searchParams"
     />
-    <button class="header__button" @click="createModalStore.openModal">
+    <button class="header__button" @click="modalStore.openCreateModal">
       Добавить пользователя +
     </button>
   </header>

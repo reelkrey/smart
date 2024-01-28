@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { IUser } from '@/common/types/user'
 import { useUserStore } from '@/stores/user'
-import { useDetailsModalStore } from '@/stores/detailsModal'
+import { useModalStore } from '@/stores/modal'
 
 type Props = {
   users: IUser[]
@@ -9,7 +9,7 @@ type Props = {
 defineProps<Props>()
 
 const { deleteUser: deleteUserHandler } = useUserStore()
-const detailsModalStore = useDetailsModalStore()
+const modalStore = useModalStore()
 
 function deleteUser(userId: number) {
   deleteUserHandler(userId)
@@ -24,7 +24,7 @@ function deleteUser(userId: number) {
       </span>
     </div>
     <div class="user__item-inner details">
-      <span class="user__name" @click="detailsModalStore.openModal(user)">{{
+      <span class="user__name" @click="modalStore.openDetailsModal(user)">{{
         user.first_name
       }}</span>
       <span class="user__email">{{ user.email }}</span>

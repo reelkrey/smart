@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { IUser } from '@/common/types/user'
-import { useCreateModalStore } from '@/stores/createModal'
+import { useModalStore } from '@/stores/modal'
 import { ref } from 'vue'
 
-const createModalStore = useCreateModalStore()
+const modalStore = useModalStore()
 
 const uncorrect = ref(false)
 const user: IUser = {
@@ -20,7 +20,7 @@ const emit = defineEmits<{
 function addUser() {
   if (user.first_name.length >= 3 && user.email.includes('@')) {
     emit('addUser', user)
-    createModalStore.closeModal()
+    modalStore.closeCreateModal()
     uncorrect.value = false
   } else {
     uncorrect.value = true

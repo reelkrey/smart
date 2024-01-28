@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { useDetailsModalStore } from '@/stores/detailsModal'
-import { useCreateModalStore } from '@/stores/createModal'
+import { useModalStore } from '@/stores/modal'
 import { onClickOutside } from '@vueuse/core'
 import { ref } from 'vue'
 
@@ -10,12 +9,11 @@ type Props = {
 }
 defineProps<Props>()
 
-const detailsModalStore = useDetailsModalStore()
-const createModalStore = useCreateModalStore()
+const modalStore = useModalStore()
 const modal = ref(null)
 
-onClickOutside(modal, createModalStore.closeModal)
-onClickOutside(modal, detailsModalStore.closeModal)
+onClickOutside(modal, modalStore.closeDetailsModal)
+onClickOutside(modal, modalStore.closeCreateModal)
 </script>
 
 <template>
@@ -27,14 +25,14 @@ onClickOutside(modal, detailsModalStore.closeModal)
         <button
           v-if="modalType === 'details'"
           class="modal__button"
-          @click="detailsModalStore.closeModal"
+          @click="modalStore.closeDetailsModal"
         >
           ✖
         </button>
         <button
           v-if="modalType === 'create'"
           class="modal__button"
-          @click="createModalStore.closeModal"
+          @click="modalStore.closeCreateModal"
         >
           ✖
         </button>

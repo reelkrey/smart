@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useDetailsModalStore } from '@/stores/detailsModal'
+import { useModalStore } from '@/stores/modal'
 import { computed } from 'vue'
 
-const detailsModalStore = useDetailsModalStore()
-const user = computed(() => detailsModalStore.user)
+const modalStore = useModalStore()
+const user = computed(() => modalStore.user)
 </script>
 
 <template>
