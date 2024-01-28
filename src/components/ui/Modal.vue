@@ -12,15 +12,15 @@ defineProps<Props>()
 
 const detailsModalStore = useDetailsModalStore()
 const createModalStore = useCreateModalStore()
-const target = ref(null)
+const modal = ref(null)
 
-onClickOutside(target, createModalStore.closeModal)
-onClickOutside(target, detailsModalStore.closeModal)
+onClickOutside(modal, createModalStore.closeModal)
+onClickOutside(modal, detailsModalStore.closeModal)
 </script>
 
 <template>
   <div class="overlay" v-if="modalActive">
-    <div class="modal" ref="target">
+    <div class="modal" ref="modal">
       <div class="modal__wrapper">
         <slot></slot>
 
