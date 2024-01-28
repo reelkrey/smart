@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import type { IUserForm } from '@/common/types/userForm'
 import { useFormStore } from '@/stores/form'
+import { computed } from 'vue'
 
-const { active } = useFormStore()
+const store = useFormStore()
+const active = computed(() => store.active)
 const user: IUserForm = {
   first_name: '',
   email: ''

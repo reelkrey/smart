@@ -6,6 +6,7 @@ export const useFormStore = defineStore('form', () => {
 
   function setIsActive() {
     active.value = !active.value
+    console.log()
   }
 
   return {
