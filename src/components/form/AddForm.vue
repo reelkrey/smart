@@ -37,6 +37,7 @@ function addUser() {
           <label class="form__label" for="name">Введите имя</label>
           <input
             class="form__input"
+            :class="{ 'form__input-uncorrect': uncorrect }"
             type="text"
             placeholder="Имя"
             v-model="user.first_name"
@@ -48,6 +49,7 @@ function addUser() {
           <label class="form__label" for="email">Введите электронную почту</label>
           <input
             class="form__input"
+            :class="{ 'form__input-uncorrect': uncorrect }"
             type="text"
             placeholder="Email"
             v-model="user.email"
@@ -93,9 +95,14 @@ function addUser() {
   }
 
   &__label-inner {
+    position: relative;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+
+    &:nth-child(2) {
+      margin-bottom: 50px;
+    }
   }
 
   &__label {
@@ -117,7 +124,32 @@ function addUser() {
   }
 
   &__uncorrect {
+    position: absolute;
+    top: 55px;
+    font-size: 12px;
     color: #ff0000;
+  }
+
+  &__input-uncorrect {
+    animation: horizontal-shaking 0.3s 1.5;
+  }
+}
+
+@keyframes horizontal-shaking {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 </style>
