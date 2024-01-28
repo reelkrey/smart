@@ -1,32 +1,46 @@
 <script setup lang="ts">
 import { useModalStore } from '@/stores/modal'
 
-const { isActive, userInfo } = useModalStore()
+const { isActive, setIsActive, userInfo } = useModalStore()
 </script>
 
 <template>
-  <div class="user__details" v-if="isActive">
-    <div class="user__details-wrapper">
-      <div class="user__details-inner">
-        <div class="user__details-avatar">
-          <img src="../../../public/images/user-photo.svg" alt="User image" />
+  <div class="overlay" v-if="isActive">
+    <div class="user__details">
+      <div class="user__details-wrapper">
+        <div class="user__details-inner">
+          <div class="user__details-avatar">
+            <img src="../../../public/images/user-photo.svg" alt="User image" />
+          </div>
         </div>
-      </div>
-      <div class="user__details-inner">
-        <h3 class="user__details-header">Персональная информация</h3>
-        <span class="user__details-info name">{{
-          `${userInfo?.first_name} ${userInfo?.last_name}`
-        }}</span>
-        <span class="user__details-info">{{ userInfo?.email }} </span>
-      </div>
-      <div class="user__details-inner">
-        <button class="user__details-button">✖</button>
+        <div class="user__details-inner">
+          <h3 class="user__details-header">Персональная информация</h3>
+          <span class="user__details-info name">{{
+            `${userInfo?.first_name} ${userInfo?.last_name}`
+          }}</span>
+          <span class="user__details-info">{{ userInfo?.email }} </span>
+        </div>
+        <div class="user__details-inner" v-if="userInfo">
+          <button class="user__details-button" @click="setIsActive(userInfo)">✖</button>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный цвет */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Положите его выше, чем ваш модальный контент */
+}
 .user__details {
   position: absolute;
   top: 50%;
