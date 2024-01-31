@@ -18,7 +18,7 @@ async function deleteUser(userId: number) {
   await api.delete(`/users/${userId}`)
 }
 
-export const userApi = {
+export const userService = {
   getUsers,
   addUser,
   deleteUser

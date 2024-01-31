@@ -1,5 +1,5 @@
 import type { IUser } from '@/common/types/user'
-import { userApi } from '@/services/user'
+import { userService } from '@/services/user'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 
@@ -13,7 +13,7 @@ export const useUserStore = defineStore('users', () => {
 
   async function getUsers() {
     try {
-      users.value = await userApi.getUsers()
+      users.value = await userService.getUsers()
       loading.value = false
     } catch (error) {
       console.log(error)
@@ -22,7 +22,7 @@ export const useUserStore = defineStore('users', () => {
 
   async function addUser(user: IUser) {
     try {
-      await userApi.addUser(user)
+      await userService.addUser(user)
       users.value = [...users.value, user]
     } catch (error) {
       console.log(error)
@@ -31,7 +31,7 @@ export const useUserStore = defineStore('users', () => {
 
   async function deleteUser(userId: number) {
     try {
-      await userApi.deleteUser(userId)
+      await userService.deleteUser(userId)
       users.value = users.value.filter((user) => user.id !== userId)
     } catch (error) {
       console.log(error)
