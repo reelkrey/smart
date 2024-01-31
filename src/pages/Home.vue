@@ -3,10 +3,6 @@ import { useUserStore } from '@/stores/user'
 import { useModalStore } from '@/stores/modal'
 import { computed, onMounted } from 'vue'
 import type { IUser } from '@/common/types/user'
-import Users from '@/components/user/Users.vue'
-import UserCreate from '@/components/user/UserCreate.vue'
-import Modal from '@/components/ui/Modal.vue'
-import UserDetails from '@/components/user/UserDetails.vue'
 
 const userStore = useUserStore()
 const modalStore = useModalStore()

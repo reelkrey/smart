@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useModalStore } from '@/stores/modal'
-import Search from '../ui/Search.vue'
 
 const modalStore = useModalStore()
 </script>
