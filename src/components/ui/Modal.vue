@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useModalStore } from '@/stores/modal'
 import { onClickOutside } from '@vueuse/core'
+import { useModalStore } from '@/stores/modal'
 import { ref } from 'vue'
 
 type Props = {
