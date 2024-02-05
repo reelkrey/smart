@@ -8,9 +8,6 @@ const modalStore = useModalStore()
   <header class="header">
     <span class="header__logo">smart</span>
     <Search />
-    <button class="header__button" @click="modalStore.openCreateModal">
-      Добавить пользователя +
-    </button>
   </header>
 </template>
 
